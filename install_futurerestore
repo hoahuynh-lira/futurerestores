@@ -1,0 +1,47 @@
+echo Futurerestore Linux
+echo Hộ trợ thêm iOS14
+echo Patch Linux bởi Hòa Huỳnh
+
+sudo apt install libtool automake g++ python-dev libzip-dev libcurl4-openssl-dev cmake libssl-dev libusb-1.0-0-dev libreadline-dev libbz2-dev libpng-dev git
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
+
+git clone https://github.com/libimobiledevice/libplist
+cd libplist && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/libimobiledevice/libusbmuxd
+cd libusbmuxd && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/libimobiledevice/libimobiledevice 
+cd libimobiledevice && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/lzfse/lzfse
+cd lzfse && make && sudo make install && cd ..
+
+git clone https://github.com/libimobiledevice/libirecovery
+cd libirecovery && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/hoahuynh-lira/libgeneral
+cd libgeneral && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/hoahuynh-lira/libfragmentzip
+cd libfragmentzip && ./autogen.sh && make && sudo make install && cd ..
+
+git clone https://github.com/hoahuynh-lira/img4tool
+cd img4tool && ./autogen.sh && make && sudo make install && cd ..
+
+git clone --recursive https://github.com/hoahuynh-lira/futurerestore
+cd futurerestore/external/idevicerestore
+wget https://gist.githubusercontent.com/ADesigniOS/54069094781cd390d54e6d796713abf2/raw/7038d8c8ffe287d9ebe2bef2d8fa5bfa799c1c1a/idevicerestore.patch
+git apply idevicerestore.patch
+cd ../..
+./autogen.sh && make && sudo make install && cd ..
+
+echo Cài đặt thành công:)
+
+
+
+
+
+
+
+
